@@ -15,10 +15,12 @@ class AccountsController < ApplicationController
   def create
     # one way to create an account does not santize
     # current_user.accounts.create(name: params[:account][:name], balance: params[:account][:balance])
-    account = current_user.accounts.new(account_params)
-    if account.save
+    @account = current_user.accounts.new(account_params)
+    if @account.save
+      flash[:success] = "Account Created"
       redirect_to accounts_path
     else
+      flash[:error] = "Error #{@account.errors.full_messages.join(", ")}"
       render :new
     end
   end
