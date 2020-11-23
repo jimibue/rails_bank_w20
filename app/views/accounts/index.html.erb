@@ -1,3 +1,13 @@
-<h1>Welcome <%= current_user.email %></h1>
+<h1>Welcome <%= current_user.first_name %></h1>
+<hr />
+<%= link_to 'Add account', new_account_path, class: 'waves-effect waves-light btn'%>
+
+<h3>Your accounts</h3>
+
+  <div class="row">
+      <% @accounts.each do |account|%>
+        <%= render 'account_card', account_yo: account%>
+      <% end %>
+  </div>
 
 
